@@ -12,7 +12,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ListaParqueo">
         <Stack.Screen name="ListaParqueo" component={ListaParqueo} options={{ headerShown: false }} />
-        <Stack.Screen name="PagoSpotParqueo" component={PagoSpotParqueo} options={{ title: 'Compra de Parqueo' }} />
+        <Stack.Screen name="PagoSpotParqueo" component={PagoSpotParqueo} options={{ title: 'Compra de Parqueo', headerShown: false}} />
         <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>

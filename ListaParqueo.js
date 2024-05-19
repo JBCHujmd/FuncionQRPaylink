@@ -33,6 +33,21 @@ export default class ListaParqueo extends React.Component {
     }));
   };
 
+  handleAddTickets = (quantity) => {
+    const today = new Date().toLocaleDateString();
+    this.setState((prevState) => {
+      const newSpots = [];
+      for (let i = 0; i < quantity; i++) {
+        const newId = (prevState.parkingSpots.length + newSpots.length + 1).toString();
+        newSpots.push(new SpotParqueo(newId, today));
+      }
+      return {
+        parkingSpots: [...prevState.parkingSpots, ...newSpots],
+      };
+    });
+  };
+
+
   renderItem = ({ item }) => (
     <View style={styles.parkingItem}>
       <Text style={styles.parkingText}>{item.id}</Text>
