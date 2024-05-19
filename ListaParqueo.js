@@ -13,6 +13,7 @@ export default class ListaParqueo extends React.Component {
         new SpotParqueo('3', '12/03/2024'),
         new SpotParqueo('4', '13/03/2024'),
       ],
+      key: 0, 
     };
   }
 
@@ -43,6 +44,7 @@ export default class ListaParqueo extends React.Component {
       }
       return {
         parkingSpots: [...prevState.parkingSpots, ...newSpots],
+        key: prevState.key + 1,  
       };
     });
   };
@@ -60,7 +62,7 @@ export default class ListaParqueo extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} key={this.state.key}>
         <View style={styles.header}>
           <Image source={require('./assets/LogoDaviplata.png')} style={styles.logo} />
         </View>
@@ -71,7 +73,7 @@ export default class ListaParqueo extends React.Component {
           keyExtractor={item => item.id}
           style={styles.parkingList}
         />
-        <TouchableOpacity style={styles.addButton} onPress={() => this.props.navigation.navigate('PagoSpotParqueo')}>
+        <TouchableOpacity style={styles.addButton} onPress={() => this.props.navigation.navigate('PagoSpotParqueo', { addTickets: this.handleAddTickets })}>
           <Ionicons name="add-circle-outline" size={50} color="white" />
           <Text style={styles.addButtonText}>COMPRAR NUEVO PARQUEO</Text>
         </TouchableOpacity>
@@ -90,12 +92,11 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#D32F2F',
     width: '100%',
-    padding: 20,
     alignItems: 'center',
   },
   logo: {
     width: 250,
-    height: 80,
+    height: 150,
     resizeMode: 'contain',
   },
   title: {
